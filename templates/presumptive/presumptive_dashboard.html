@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="breadcrumb-title pe-3">Charts</div>
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Chartjs</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">Map With Marker</div>
+								<div class="card-body">
+									<div id="marker-map" class="gmaps"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+            <!--end row-->
+            <div class="card radius-15">
+						<div class="card-body">
+							<div class="card-title">
+								<h5 class="mb-0">Top pages by views </h5>
+							</div>
+							<hr/>
+							<div class="table-responsive">
+								<table class="table mb-0">
+									<thead class="thead-dark">
+										<tr>
+											<th>#</th>
+											<th>Title</th>
+											<th>Views</th>
+											<th>Avg. Time</th>
+											<th>Bounce Rate</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td><a href="https://themeforest.net/item/synadmin-bootstrap4-admin-template/29014766" target="_blank">https://themeforest.net/item/synadmin-bootstrap4-admin-template/29014766</a>
+											</td>
+											<td>660</td>
+											<td>55s</td>
+											<td>3.6%</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td><a href="https://codervent.com/wipe-admin-dark/dashboard/v3" target="_blank">https://codervent.com/wipe-admin-dark/dashboard/v3</a>
+											</td>
+											<td>352</td>
+											<td>16s</td>
+											<td>8.4%</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td><a href="https://themeforest.net/item/dashtreme-multipurpose-bootstrap4-admin-template/23059455" target="_blank">https://themeforest.net/item/dashtreme-multipurpose-bootstrap4-admin-template/23059455</a>
+											</td>
+											<td>101</td>
+											<td>10s</td>
+											<td>6.7%</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td><a href="https://themeforest.net/item/rukada-responsive-bootstrap-4-admin-template/22820477" target="_blank">https://themeforest.net/item/rukada-responsive-bootstrap-4-admin-template/22820477</a>
+											</td>
+											<td>95</td>
+											<td>57s</td>
+											<td>5.2%</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td><a href="https://codervent.com/rocker-angular/dashboard/v1" target="_blank">https://codervent.com/rocker-angular/dashboard/v1</a>
+											</td>
+											<td>102</td>
+											<td>45s</td>
+											<td>7.2%</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+        </div>
+    </div>
+    <!--end page-content-wrapper-->
+  </div>
+{% endblock %}
+{% block script %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4&amp;callback=initMap" async defer></script>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{% url "home:home" %}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Geographical Distribution</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-6 col-lg-6 mx-auto">
+                    <div class="card radius-15">
+
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6 class="mb-0">Gender by Geopolitical Zones</h6>
+                            </div>
+                            <hr/>
+                            {% if genders %}
+                            <div class="chart-container1">
+                                <canvas id="chart2"></canvas>
+                            </div>
+                            {% else %}
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6 mx-auto">
+                    <div class="card radius-15">
+
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6 class="mb-0">Geographical Distribution</h6>
+                            </div>
+                            <hr/>
+                            {% if geographic_distributions %}
+                            <div class="chart-container2">
+                                <canvas id="chart3"></canvas>
+                            </div>
+                            {% else %}
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+        </div>
+    </div>
+    <!--end page-content-wrapper-->
+  </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            // chart 2
+            var ctx = document.getElementById("chart2").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['North-West', 'North-East', 'North-Central', 'South-South', 'South-East', 'South-West'],
+                    datasets: [{
+                        label: 'Male',
+                        data: [
+                            {% for gender in genders %} 
+                                "{{ gender.north_west.male }}",
+                                "{{ gender.north_east.male }}", 
+                                "{{ gender.north_central.male }}",
+                                "{{ gender.south_south.male }}",
+                                "{{ gender.south_east.male }}",
+                                "{{ gender.south_west.male }}",
+                            {% endfor %}
+                        ],
+                        barPercentage: .5,
+                        backgroundColor: "#673ab7"
+                    }, {
+                        label: 'Female',
+                        data: [
+                            {% for gender in genders %}
+                                "{{ gender.north_west.female}}",
+                                "{{ gender.north_east.female}}",
+                                "{{ gender.north_central.female}}",
+                                "{{ gender.south_south.female }}",
+                                "{{ gender.south_east.female }}",
+                                "{{ gender.south_west.female }}"
+                            {% endfor %}
+                        ],
+                        barPercentage: .5,
+                        backgroundColor: "#bf9bff"
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        datalabels: {
+                          anchor: 'end',
+                          align: 'end',
+                          labels: {
+                            value: {
+                              color: ' #000000'
+                            }
+                          }
+
+                        }
+                      },
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: '#585757',
+                            boxWidth: 40
+                        }
+                    },
+                    tooltips: {
+                        enabled: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                        }]
+                    }
+                }
+            });
+            // chart 3
+            new Chart(document.getElementById("chart3"), {
+                type: 'pie',
+                data: {
+                    labels: ["North West", "North East", "North Central", "South South", "South East", "South West"],
+                    datasets: [{
+                        label: "Population (millions)",
+                        backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed","#00ffff"],
+                        data: [
+                            {% for geo in geographic_distributions %} 
+                                "{{ geo.north_west }}",
+                                "{{ geo.north_east }}",
+                                "{{ geo.north_central }}",
+                                "{{ geo.south_south }}",
+                                "{{ geo.south_east }}",
+                                "{{ geo.south_west }}"
+                            {% endfor %}
+                        ]
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        datalabels: {
+                          labels: {
+                            value: {
+                              color: ' #ffffff'
+                            }
+                          }
+
+                        }
+                      },
+                    title: {
+                        display: false,
+                        text: 'Geographic population (millions) in Nigeria'
+                    }
+                }
+            });
+            // chart 4
+        });
+      </script>
+{% endblock %}

@@ -1,0 +1,488 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+			<!--page-content-wrapper-->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+                    <div class="row">
+						<div class="col-12 col-lg-3">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="d-flex align-items-center">
+                                        <div class="">
+                                            {% if overall_list  %}
+                                                {% for overall_call in overall_list %}
+                                                    <h4 class="mb-0 font-weight-bold">{{ overall_call.total_overall_calls.unique_callers }}</h4>
+                                                {% endfor %}
+                                            {% else %}
+                                                    <h4 class="mb-0 font-weight-bold">0</h4>
+                                            {% endif %}
+                                            <p class="mb-0">Overall unique calls</p>
+                                        </div>
+                                        <div class="widgets-icons bg-light-primary text-primary rounded-circle ms-auto"><i class='bx bx-headphone'></i>
+                                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-3">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="d-flex align-items-center">
+										<div class="">
+											{% if actual_calls %}
+                                                {% for actual_call in actual_calls %}
+                                                    <h4 class="mb-0 font-weight-bold">{{ actual_call.total_overall_calls.actual_callers }}</h4>
+                                                {% endfor %}
+                                            {% else %}
+                                                    <h4 class="mb-0 font-weight-bold">0</h4>
+                                            {% endif %}
+											<p class="mb-0"> Overall actual calls</p>
+										</div>
+										<div class="widgets-icons bg-light-success text-success rounded-circle ms-auto"><i class='bx bx-phone'></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-3">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="d-flex align-items-center">
+										<div class="">
+                                            {% if serviced_calls %}
+                                                {% for serviced in serviced_calls %}
+                                                    <h4 class="mb-0 font-weight-bold">{{ serviced.total_serviced_calls }}</h4>
+                                                {% endfor %}
+                                            {% else %}
+                                                    <h4 class="mb-0 font-weight-bold">0</h4>
+                                            {% endif %}
+											<p class="mb-0">Serviced calls</p>
+										</div>
+										<div class="widgets-icons bg-light-danger text-danger rounded-circle ms-auto"><i class='bx bx-support'></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-lg-3">
+							<div class="card radius-15">
+								<div class="card-body">
+									<div class="d-flex align-items-center">
+										<div class="">
+											{% if first_calls %}
+                                                {% for first in first_calls %}
+                                                    <h4 class="mb-0 font-weight-bold">{{ first.services_provided_agent }}</h4>
+                                                {% endfor %}
+                                            {% else %}
+                                                    <h4 class="mb-0 font-weight-bold">0</h4>
+                                            {% endif %}
+											<p class="mb-0">Agent at first call</p>
+										</div>
+										<div class="widgets-icons bg-light-info text-info rounded-circle ms-auto"><i class='bx bx-user'></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--end row-->
+{#					<div class="row">#}
+{#						<div class="col-12 col-lg-8 mx-auto">#}
+{#                            <div class="card radius-15">#}
+{#                                <div class="card-body">#}
+{#                                    <div class="chart-container1">#}
+{#                                        <canvas id="chart2"></canvas>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#						</div>#}
+{#						<div class="col-12 col-lg-4 mx-auto">#}
+{#                            <div class="card radius-15 w-100">#}
+{#                                <div class="card-body">#}
+{#                                    <div class="d-flex align-items-center gap-3">#}
+{#                                        <div class="">#}
+{#                                            <h6 class="mb-0">Total callers referred for testing</h6>#}
+{#                                        </div>#}
+{#                                        {% if referred_testing %}#}
+{#                                            {% for referred in referred_testing %}#}
+{#                                                <p class="mb-0 ms-auto">{{ referred.total_referred_testing }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        {% else %}#}
+{#                                                <p class="mb-0 ms-auto">0</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                    <hr/>#}
+{#                                    <div class="d-flex align-items-center gap-3">#}
+{#                                        <div class="">#}
+{#                                            <h6 class="mb-0">Presumptive cases called back</h6>#}
+{#                                        </div>#}
+{#                                        {% if called_back %}#}
+{#                                            {% for called in called_back %}#}
+{#                                                <p class="mb-0 ms-auto">{{ called.called_back  }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        {% else %}#}
+{#                                                <p class="mb-0 ms-auto">0</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                    <hr/>#}
+{#                                    <div class="d-flex align-items-center gap-3">#}
+{#                                        <div class="">#}
+{#                                            <h6 class="mb-0">Presumptive cases responded (reached?)</h6>#}
+{#                                        </div>#}
+{#                                        {% if called_back %}#}
+{#                                            {% for called in called_back %}#}
+{#                                                <p class="mb-0 ms-auto">{{ called.responded }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        {% else %}#}
+{#                                                <p class="mb-0 ms-auto">0</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                    <hr/>#}
+{#                                    <div class="d-flex align-items-center gap-3">#}
+{#                                        <div class="">#}
+{#                                            <h6 class="mb-0">Presumptive cases reached who disclosed Positive</h6>#}
+{#                                        </div>#}
+{#                                        {% if called_back %}#}
+{#                                            {% for called in called_back %}#}
+{#                                                <p class="mb-0 ms-auto">{{ called.disclosed_positive }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        {% else %}#}
+{#                                                <p class="mb-0 ms-auto">0</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                    <hr/>#}
+{#                                    <div class="d-flex align-items-center gap-3">#}
+{#                                        <div class="">#}
+{#                                            <h6 class="mb-0">Presumptive cases reached who disclosed Negative</h6>#}
+{#                                        </div>#}
+{#                                        {% if called_back %}#}
+{#                                            {% for called in called_back %}#}
+{#                                                <p class="mb-0 ms-auto">{{ called.disclosed_negative }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        {% else %}#}
+{#                                                <p class="mb-0 ms-auto">0</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                    <hr/>#}
+{#                                    <div class="d-flex align-items-center gap-3">#}
+{#                                        <div class="">#}
+{#                                            <h6 class="mb-0">Presumptive cases reached who has not gotten result</h6>#}
+{#                                        </div>#}
+{#                                        {% if called_back %}#}
+{#                                            {% for called in called_back %}#}
+{#                                                <p class="mb-0 ms-auto">{{ called.gotten_result }}</p>#}
+{#                                            {% endfor %}#}
+{#                                        {% else %}#}
+{#                                                <p class="mb-0 ms-auto">0</p>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#						</div>#}
+{#					</div>#}
+					<!--end row-->
+                    <!--end row-->
+					<div class="d-flex flex-column flex-xl-row gap-4">
+						<div class="card radius-15 w-100">
+							<div class="card-body">
+								<div class="progress-wrapper">
+                                    {% if referred_testing %}
+                                        {% for referred in referred_testing %}
+                                            <p class="mb-1">Total callers referred for testing:
+                                                <span class="float-right">{{ referred.total_referred_testing }}</span>
+                                            </p>
+
+                                            <div class="progress radius-10" style="height:5px;">
+                                                <div class="progress-bar" role="progressbar" style="width: {{ referred.total_referred_testing }}%"></div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p class="mb-1">Total callers referred for testing:
+                                            <span class="float-right">0</span>
+                                        </p>
+
+                                        <div class="progress radius-10" style="height:5px;">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    {% endif %}
+								</div>
+								<hr/>
+								<div class="progress-wrapper">
+                                    {% if called_back %}
+                                        {% for called in called_back %}
+                                            <p class="mb-1">Presumptive cases called back:
+                                                <span class="float-right">{{ called.called_back  }}</span>
+                                            </p>
+
+                                            <div class="progress radius-10" style="height:5px;">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ called.called_back  }}%"></div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p class="mb-1">Presumptive cases called back:
+                                            <span class="float-right">0</span>
+                                        </p>
+
+                                        <div class="progress radius-10" style="height:5px;">
+                                            <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    {% endif %}
+								</div>
+								<hr/>
+								<div class="progress-wrapper">
+                                    {% if called_back %}
+                                        {% for called in called_back %}
+                                            <p class="mb-1">Presumptive cases responded (reached?):
+                                                <span class="float-right">{{ called.responded }}</span>
+                                            </p>
+
+                                            <div class="progress radius-10" style="height:5px;">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: {{ called.responded }}%"></div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p class="mb-1">Presumptive cases responded (reached?):
+                                            <span class="float-right">0</span>
+                                        </p>
+
+                                        <div class="progress radius-10" style="height:5px;">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    {% endif %}
+								</div>
+								<hr/>
+								<div class="progress-wrapper">
+                                    {% if called_back %}
+                                        {% for called in called_back %}
+                                            <p class="mb-1">Presumptive cases reached who disclosed Positive:
+                                                <span class="float-right">{{ called.disclosed_positive }}</span>
+                                            </p>
+
+                                            <div class="progress radius-10" style="height:5px;">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ called.disclosed_positive }}%"></div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p class="mb-1">Presumptive cases reached who disclosed Positive:
+                                            <span class="float-right">0</span>
+                                        </p>
+
+                                        <div class="progress radius-10" style="height:5px;">
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    {% endif %}
+								</div>
+								<hr/>
+								<div class="progress-wrapper">
+                                    {% if called_back %}
+                                        {% for called in called_back %}
+                                            <p class="mb-1">Presumptive cases reached who disclosed Negative:
+                                                <span class="float-right">{{ called.disclosed_negative }}</span>
+                                            </p>
+
+                                            <div class="progress radius-10" style="height:5px;">
+                                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ called.disclosed_negative }}%"></div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p class="mb-1">Presumptive cases reached who disclosed Negative:
+                                            <span class="float-right">0</span>
+                                        </p>
+
+                                        <div class="progress radius-10" style="height:5px;">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    {% endif %}
+								</div>
+								<hr/>
+								<div class="progress-wrapper">
+                                    {% if called_back %}
+                                        {% for called in called_back %}
+                                            <p class="mb-1">Presumptive cases reached who has not gotten result:
+                                                <span class="float-right">{{ called.gotten_result }}</span>
+                                            </p>
+
+                                            <div class="progress radius-10" style="height:5px;">
+                                                <div class="progress-bar bg-dark" role="progressbar" style="width: {{ called.gotten_result }}%"></div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                         <p class="mb-1">Presumptive cases reached who disclosed Negative:
+                                            <span class="float-right">0</span>
+                                        </p>
+
+                                        <div class="progress radius-10" style="height:5px;">
+                                            <div class="progress-bar bg-dark" role="progressbar" style="width: 0%"></div>
+                                        </div>
+                                    {% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="card radius-15 w-100">
+                            {% if case %}
+							<div class="card-body">
+                                <div>
+                                    <h6 class="mb-4">Case Category</h6>
+                                </div>
+                                <div class="chart-container1">
+                                    <canvas id="chart5"></canvas>
+                                </div>
+							</div>
+                            {% else %}
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+						</div>
+						<div class="card radius-15 w-100">
+							<div class="card-body">
+{#                                <div class="d-lg-flex align-items-center">#}
+									<div>
+										<h5 class="mb-4">Calls</h5>
+									</div>
+{#								</div>#}
+								<div class="chart-container1">
+                                    <canvas id="chart2"></canvas>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--end page-content-wrapper-->
+		</div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            // chart 2
+            _cat = {{y|safe}};
+            _sta = {{x|safe}}
+            _case = {{case|safe}}
+            var ctx = document.getElementById("chart2").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total overall calls', 'Total serviced calls', 'Calls self service',
+                    'Calls opted agent', 'Calls received agent','Calls opted received','Called back service'],
+                    datasets: [{
+                        label: 'Actual Calls',
+                        data: _cat,
+                        barPercentage: .6,
+                        backgroundColor: "#673ab7"
+                    }, {
+                        label: 'Unique Calls',
+                        data: _sta,
+                        barPercentage: .6,
+                        backgroundColor: "#bf9bff"
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: '#585757',
+                            boxWidth: 40
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                          labels: {
+                            value: {
+                              color: ' #ffffff'
+                            }
+                          }
+
+                        }
+                      },
+                    tooltips: {
+                        enabled: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                            stacked: true,
+                        }]
+                    }
+                }
+            });
+            var ctx = document.getElementById("chart5").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Inquiry for information', 'Inquiry for service', 'Hoax Call', 'Non-TB Calls',
+                        'Appreciation/Acknowledgement', 'Service Complaint', 'Technical Complaint','Covid-19',
+                    'Suggestions','Dropped Calls','Test Calls'],
+                    datasets: [{
+                        label: 'Case Category',
+                        data: _case,
+                        fill: true,
+                        backgroundColor: "rgba(179,181,198,0.2)",
+                        borderColor: "rgba(179,181,198,1)",
+                        pointBorderColor: "#fff",
+                        pointBackgroundColor: "rgba(179,181,198,1)",
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: '#585757',
+                            boxWidth: 40
+                        }
+                    },
+                    tooltips: {
+                        enabled: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                        }]
+                    }
+                }
+            });
+        });
+
+      </script>
+{% endblock %}

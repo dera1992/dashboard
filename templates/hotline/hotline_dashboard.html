@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{% url "home:home" %}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Hotline Information</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-12 col-lg-12 mx-auto">
+                    <div class="card radius-15">
+                        {% if hotlines %}
+                        <div class="card-body">
+
+                            <div class="card-title"></div>
+                            <div class="chart-container2">
+                                <canvas id="chart6"></canvas>
+                            </div>
+
+                        </div>
+                        {% else %}
+                                <p style="text-align: center">No Hotline Information</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+            <div class="card radius-15">
+						<div class="card-body">
+							<div class="card-title">
+								<h6 class="mb-0">All Hotline Information </h6>
+							</div>
+							<hr/>
+							<div class="table-responsive">
+                               {% if sourceHotlines %}
+								<table class="table mb-0">
+									<thead class="thead-dark">
+										<tr>
+											<th>#</th>
+											<th>Radio</th>
+											<th>TV</th>
+											<th>Friends and Family</th>
+											<th>Handbill Posters</th>
+											<th>SMS</th>
+											<th>Training and Campaign</th>
+											<th>Facebook/Twitter/Instagram</th>
+											<th>Schools</th>
+											<th>PPMVS</th>
+											<th>Religious Settings</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for source in sourceHotlines %}
+											<tr>
+												<td>1</td>
+												<td>{{ source.radio }}</td>
+												<td>{{ source.tv }}</td>
+												<td>{{ source.friends_family }}</td>
+												<td>{{ source.handbill_posters }}</td>
+												<td>{{ source.sms }}</td>
+												<td>{{ source.training_and_campaign }}</td>
+												<td>{{ source.facebook_twitter_instagram }}</td>
+												<td>{{ source.schools }}</td>
+												<td>{{ source.ppmvs }}</td>
+												<td>{{ source.religious_settings }}</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+
+								</table>
+                                {% else %}
+                                        <p style="text-align: center">No Information</p>
+                                {% endif %}
+							</div>
+						</div>
+					</div>
+        </div>
+    </div>
+    <!--end page-content-wrapper-->
+  </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            // chart 6
+	        new Chart(document.getElementById("chart6"), {
+		type: 'doughnut',
+		data: {
+			labels: ["Radio", "TV", "Friends Family", "Handbill Poster", "Sms", "Training and Campaign", "Facebook", "Schools", "PPMVS", "Religious Setting"],
+			datasets: [{
+				label: "Population (millions)",
+				backgroundColor: [
+					"#673ab7", 
+					"#32ab13", 
+					"#f02769", 
+					"#ffc107", 
+					"#A827A8", 
+					"#87fe07", 
+					"#012ecf", 
+					"#E8276E",
+					"#9686fs" 
+				],
+				data: [
+					{% for hotline in hotlines %}
+						"{{ hotline.radio }}", 
+						"{{ hotline.tv }}", 
+						"{{ hotline.friends_family }}",
+						"{{ hotline.handbill_posters }}",
+						"{{ hotline.sms }}", 
+						"{{ hotline.training_and_campaign }}",
+						"{{ hotline.facebook_twitter_instagram }}",
+						"{{ hotline.schools }}",
+						"{{ hotline.ppmvs }}",
+						"{{ hotline.religious_settings }}"
+					{% endfor %}
+				]
+			}]
+		},
+		options: {
+			maintainAspectRatio: false,
+            plugins: {
+                datalabels: {
+                  labels: {
+                    value: {
+                      color: ' #ffffff'
+                    }
+                  }
+
+                }
+              },
+			title: {
+				display: true,
+				text: 'Predicted hotline data for tuberculosis cases (millions) in 2022'
+			}
+		}
+	});
+        });
+      </script>
+{% endblock %}

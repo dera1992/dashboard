@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load templateinbound %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{% url "home:home" %}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Inbound Statistic</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="ms-auto">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">Settings</button>
+                        <button type="button" class="btn btn-primary split-bg-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown">	<span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">	<a class="dropdown-item" href="javascript:;">Action</a>
+                            <a class="dropdown-item" href="javascript:;">Another action</a>
+                            <a class="dropdown-item" href="javascript:;">Something else here</a>
+                            <div class="dropdown-divider"></div>	<a class="dropdown-item" href="javascript:;">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="row">
+                <div class="col-12 col-lg-12 mx-auto">
+                    <div class="card radius-15">
+
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6 class="mb-0">General Inbound Statistic</h6>
+                            </div>
+                            <hr/>
+                            {% if inbounds %}
+                            <div class="chart-container1">
+                                <canvas id="chart1"></canvas>
+                            </div>
+                            {% else %}
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end row-->
+            <div class="row row-cols-1 row-cols-lg-3">
+                  <div class="col d-flex">
+                    <div class="card radius-15 w-100">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6 class="mb-0">Percentage (%) of Inbound Calls per Hour </h6>
+                            </div>
+
+                            <hr/>
+                             {% if percentages %}
+                                {% for percentage in percentages %}
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "eight" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.eight }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "nine" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.nine }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "ten" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.ten }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "eleven" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.eleven }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "twelve" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.twelve }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "thirteen" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.thirteen }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "fourteen" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.fourteen }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "fifteen" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.fifteen }}%</p>
+                                </div>
+                                <hr/>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="">
+                                        <h6 class="mb-0">{% get_verbose_field_name percentage "sixteen" %}</h6>
+                                    </div>
+                                    <p class="mb-0 ms-auto">{{ percentage.sixteen }}%</p>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col d-flex">
+                    <div class="card radius-15 w-100">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h6 class="mb-0">Actual Calls Versus Unique Callers </h6>
+                            </div>
+                            <hr/>
+                            <div class="table-responsive">
+                            {% if actuals %}
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Source</th>
+                                            <th>Actual Callers</th>
+                                            <th>Unique Callers</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for actual in actuals %}
+                                        <tr>
+                                            <td>Total overall calls</td>
+                                            <td>{{ actual.total_overall_calls.actual_callers }}</td>
+                                            <td>{{ actual.total_overall_calls.unique_callers }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total serviced calls</td>
+                                            <td>{{ actual.total_serviced_calls.actual_callers }}</td>
+                                            <td>{{ actual.total_serviced_calls.unique_callers }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Calls self service</td>
+                                            <td>{{ actual.calls_self_service.actual_callers }}</td>
+                                            <td>{{ actual.calls_self_service.unique_callers }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Calls opted agent</td>
+                                            <td>{{ actual.calls_opted_agent.actual_callers }}</td>
+                                            <td>{{ actual.calls_opted_agent.unique_callers }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Calls received agent</td>
+                                            <td>{{ actual.calls_received_agent.actual_callers }}</td>
+                                            <td>{{ actual.calls_received_agent.unique_callers }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Calls opted received</td>
+                                            <td>{{ actual.calls_opted_received.actual_callers }}</td>
+                                            <td>{{ actual.calls_opted_received.unique_callers }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Called back service</td>
+                                            <td>{{ actual.called_back_service.actual_callers }}</td>
+                                            <td>{{ actual.called_back_service.unique_callers }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex">
+                    <div class="card radius-15 w-100">
+                        <div class="card-body">
+                            {% if calls %}
+                                <div id="chart3"></div>
+                            {% else %}
+                                <div class="card-title">
+                                    <h6 class="mb-0">Calls Abandoned Ivr </h6>
+                                </div>
+                                <hr/>
+                                <p style="text-align: center">No Information</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                 </div>
+                </div><!--end row-->
+        </div>
+    </div>
+    <!--end page-content-wrapper-->
+  </div>
+{% endblock %}
+{% block script %}
+    <script>
+
+        $(function () {
+            // chart 1
+
+            _y = {{y|safe}};
+            var ctx = document.getElementById('chart1').getContext('2d');
+            var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ["Total overall calls","Calls dropped without opting for service","Total Serviced calls",
+                    "Calls opted for self service","Calls opted for agent","Calls received by agent","Calls opted for agent but not received",
+                    "Calls opted for agent but not received and not yet serviced","Calls opted for agent and not received but have been serviced",
+                    "Dropped after connecting to agent and has not been called back","Dropped after connecting to agent and has been called back",
+                    "Called Back and serviced (previous month)","Called Back and serviced (month in review)","Called back and serviced",
+                    "Concluded calls to agent","Total callers referred for testing"],
+			datasets: [{
+				label: 'Inbound Statistic',
+				data: _y,
+				backgroundColor: "transparent",
+				borderColor: "#673ab7",
+				pointRadius: "0",
+				borderWidth: 4
+			}]
+		},
+		options: {
+			maintainAspectRatio: false,
+            plugins: {
+                        datalabels: {
+                          anchor: 'end',
+                          align: 'end',
+                          padding: 0,
+                          offset: 4,
+                        }
+                      },
+			legend: {
+				display: true,
+				labels: {
+					fontColor: '#585757',
+					boxWidth: 40
+				}
+			},
+			tooltips: {
+				enabled: false
+			},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}]
+			}
+		}
+	});
+        });
+      </script>
+    <script>
+        $(function () {
+        "use strict";
+        // chart 3
+        Highcharts.chart('chart3', {
+		chart: {
+			type: 'variablepie',
+			styledMode: true
+		},
+		credits: {
+			enabled: false
+		},
+		title: {
+			text: 'Countries compared by population density and total area.'
+		},
+		tooltip: {
+			headerFormat: '',
+			pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' + 'Area (square km): <b>{point.y}</b><br/>' + 'Population density (people per square km): <b>{point.z}</b><br/>'
+		},
+		series: [{
+			minPointSize: 10,
+			innerSize: '20%',
+			zMin: 0,
+			name: 'countries',
+			data: [{
+				name: 'Spain',
+				y: 505370,
+				z: 92.9
+			}, {
+				name: 'France',
+				y: 551500,
+				z: 118.7
+			}, {
+				name: 'Poland',
+				y: 312685,
+				z: 124.6
+			}, {
+				name: 'Czech Republic',
+				y: 78867,
+				z: 137.5
+			}, {
+				name: 'Italy',
+				y: 301340,
+				z: 201.8
+			}, {
+				name: 'Switzerland',
+				y: 41277,
+				z: 214.5
+			}, {
+				name: 'Germany',
+				y: 357022,
+				z: 235.6
+			}]
+		}]
+	});
+        });
+    </script>
+{% endblock %}

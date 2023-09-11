@@ -1,0 +1,83 @@
+{% load static %}
+
+    <!--sidebar-wrapper-->
+    <div class="sidebar-wrapper" data-simplebar="true">
+        <div class="sidebar-header">
+            <div class="">
+                <img src="{% static 'assets/images/logo-icon.png' %}" class="logo-icon-2" alt="" />
+            </div>
+            <div>
+                <h4 class="logo-text"><a href="{% url "home:home" %}" >Interra</a></h4>
+            </div>
+            <a href="javascript:;" class="toggle-btn ms-auto"> <i class="bx bx-menu"></i>
+            </a>
+        </div>
+        <!--navigation-->
+        <ul class="metismenu" id="menu">
+            <li>
+                <a href="{% url "home:home" %}" >
+                    <div class="parent-icon icon-color-1"><i class="bx bx-home-alt"></i>
+                    </div>
+                    <div class="menu-title">Dashboard</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:inbound-dashboard" %}">
+                    <div class="parent-icon icon-color-2"><i class="bx bx-envelope"></i>
+                    </div>
+                    <div class="menu-title">Inbound Statistics</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:followup-dashboard" %}">
+                    <div class="parent-icon icon-color-3"> <i class="bx bx-conversation"></i>
+                    </div>
+                    <div class="menu-title">Follow up statistics</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:case-dashboard" %}">
+                    <div class="parent-icon icon-color-4"><i class="bx bx-archive"></i>
+                    </div>
+                    <div class="menu-title">Case information</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:hotline-dashboard" %}">
+                    <div class="parent-icon icon-color-5"><i class="bx bx-phone-call"></i>
+                    </div>
+                    <div class="menu-title">Hotline Information</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:language-dashboard" %}">
+                    <div class="parent-icon icon-color-6"><i class="bx bx-task"></i>
+                    </div>
+                    <div class="menu-title">Language Selection</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:geographic-dashboard" %}">
+                    <div class="parent-icon icon-color-7"><i class="bx bx-map-alt"></i>
+                    </div>
+                    <div class="menu-title">Geographical Distribution</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:gender-dashboard" %}">
+                    <div class="parent-icon icon-color-11"><i class="bx bx-group"></i>
+                    </div>
+                    <div class="menu-title">Gender Distribution</div>
+                </a>
+            </li>
+            <li>
+                <a href="{% url "home:presumptive-dashboard" %}">
+                    <div class="parent-icon icon-color-10"><i class="bx bx-file"></i>
+                    </div>
+                    <div class="menu-title">Presumptive Distribution</div>
+                </a>
+            </li>
+        </ul>
+        <!--end navigation-->
+    </div>
+    <!--end sidebar-wrapper-->

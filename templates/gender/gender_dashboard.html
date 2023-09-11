@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load templateinbound %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+  <div class="page-wrapper">
+    <!--page-content-wrapper-->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <!--breadcrumb-->
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+                <div class="ps-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0 p-0">
+                            <li class="breadcrumb-item"><a href="{% url "home:home" %}"><i class="bx bx-home-alt"></i></a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Gender Distribution Dashboard</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <!--end breadcrumb-->
+            <div class="card radius-15">
+						<div class="card-body">
+							<div class="card-title">
+								<h6 class="mb-0">Gender Distribution</h6>
+							</div>
+							<hr/>
+							<div class="table-responsive">
+                            {% if genders %}
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">States</th>
+											<th scope="col">No. of Male</th>
+											<th scope="col">No. of Female</th>
+										</tr>
+									</thead>
+									<tbody>
+                                        {% for gender in genders %}
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>{% get_verbose_field_name gender "abia" %}</td>
+                                                <td>{{ gender.abia.male }}</td>
+                                                <td>{{ gender.abia.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>{% get_verbose_field_name gender "adamawa" %}</td>
+                                                <td>{{ gender.adamawa.male }}</td>
+                                                <td>{{ gender.adamawa.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>{% get_verbose_field_name gender "akwa_ibom" %}</td>
+                                                <td>{{ gender.akwa_ibom.male }}</td>
+                                                <td>{{ gender.akwa_ibom.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td>{% get_verbose_field_name gender "anambra" %}</td>
+                                                <td>{{ gender.anambra.male }}</td>
+                                                <td>{{ gender.anambra.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">5</th>
+                                                <td>{% get_verbose_field_name gender "bauchi" %}</td>
+                                                <td>{{ gender.bauchi.male }}</td>
+                                                <td>{{ gender.bauchi.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">6</th>
+                                                <td>{% get_verbose_field_name gender "bayelsa" %}</td>
+                                                <td>{{ gender.bayelsa.male }}</td>
+                                                <td>{{ gender.bayelsa.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">7</th>
+                                                <td>{% get_verbose_field_name gender "benue" %}</td>
+                                                <td>{{ gender.benue.male }}</td>
+                                                <td>{{ gender.benue.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">8</th>
+                                                <td>{% get_verbose_field_name gender "borno" %}</td>
+                                                <td>{{ gender.borno.male }}</td>
+                                                <td>{{ gender.borno.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">9</th>
+                                                <td>{% get_verbose_field_name gender "cross_river" %}</td>
+                                                <td>{{ gender.cross_river.male }}</td>
+                                                <td>{{ gender.cross_river.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">10</th>
+                                                <td>{% get_verbose_field_name gender "delta" %}</td>
+                                                <td>{{ gender.delta.male }}</td>
+                                                <td>{{ gender.delta.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">11</th>
+                                                <td>{% get_verbose_field_name gender "ebonyi" %}</td>
+                                                <td>{{ gender.ebonyi.male }}</td>
+                                                <td>{{ gender.ebonyi.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">12</th>
+                                                <td>{% get_verbose_field_name gender "edo" %}</td>
+                                                <td>{{ gender.edo.male }}</td>
+                                                <td>{{ gender.edo.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">13</th>
+                                                <td>{% get_verbose_field_name gender "ekiti" %}</td>
+                                                <td>{{ gender.ekiti.male }}</td>
+                                                <td>{{ gender.ekiti.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">14</th>
+                                                <td>{% get_verbose_field_name gender "enugu" %}</td>
+                                                <td>{{ gender.enugu.male }}</td>
+                                                <td>{{ gender.enugu.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">15</th>
+                                                <td>{% get_verbose_field_name gender "fct" %}</td>
+                                                <td>{{ gender.fct.male }}</td>
+                                                <td>{{ gender.fct.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">16</th>
+                                                <td>{% get_verbose_field_name gender "gombe" %}</td>
+                                                <td>{{ gender.gombe.male }}</td>
+                                                <td>{{ gender.gombe.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">17</th>
+                                                <td>{% get_verbose_field_name gender "imo" %}</td>
+                                                <td>{{ gender.imo.male }}</td>
+                                                <td>{{ gender.imo.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">18</th>
+                                                <td>{% get_verbose_field_name gender "jigawa" %}</td>
+                                                <td>{{ gender.jigawa.male }}</td>
+                                                <td>{{ gender.jigawa.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">19</th>
+                                                <td>{% get_verbose_field_name gender "kaduna" %}</td>
+                                                <td>{{ gender.kaduna.male }}</td>
+                                                <td>{{ gender.kaduna.male }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">20</th>
+                                                <td>{% get_verbose_field_name gender "kano" %}</td>
+                                                <td>{{ gender.kano.male }}</td>
+                                                <td>{{ gender.kano.male }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">21</th>
+                                                <td>{% get_verbose_field_name gender "kastina" %}</td>
+                                                <td>{{ gender.kastina.male }}</td>
+                                                <td>{{ gender.kastina.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">22</th>
+                                                <td>{% get_verbose_field_name gender "kebbi" %}</td>
+                                                <td>{{ gender.kebbi.male }}</td>
+                                                <td>{{ gender.kebbi.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">23</th>
+                                                <td>{% get_verbose_field_name gender "kogi" %}</td>
+                                                <td>{{ gender.kogi.male }}</td>
+                                                <td>{{ gender.kogi.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">24</th>
+                                                <td>{% get_verbose_field_name gender "kwara" %}</td>
+                                                <td>{{ gender.kwara.male }}</td>
+                                                <td>{{ gender.kwara.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">25</th>
+                                                <td>{% get_verbose_field_name gender "lagos" %}</td>
+                                                <td>{{ gender.lagos.male }}</td>
+                                                <td>{{ gender.lagos.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">26</th>
+                                                <td>{% get_verbose_field_name gender "nassarawa" %}</td>
+                                                <td>{{ gender.nassarawa.male }}</td>
+                                                <td>{{ gender.nassarawa.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">27</th>
+                                                <td>{% get_verbose_field_name gender "niger" %}</td>
+                                                <td>{{ gender.niger.male }}</td>
+                                                <td>{{ gender.niger.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">28</th>
+                                                <td>{% get_verbose_field_name gender "ogun" %}</td>
+                                                <td>{{ gender.ogun.male }}</td>
+                                                <td>{{ gender.ogun.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">29</th>
+                                                <td>{% get_verbose_field_name gender "ondo" %}</td>
+                                                <td>{{ gender.ondo.male }}</td>
+                                                <td>{{ gender.ogun.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">30</th>
+                                                <td>{% get_verbose_field_name gender "osun" %}</td>
+                                                <td>{{ gender.osun.male }}</td>
+                                                <td>{{ gender.osun.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">31</th>
+                                                <td>{% get_verbose_field_name gender "oyo" %}</td>
+                                                <td>{{ gender.oyo.male }}</td>
+                                                <td>{{ gender.oyo.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">32</th>
+                                                <td>{% get_verbose_field_name gender "plateau" %}</td>
+                                                <td>{{ gender.plateau.male }}</td>
+                                                <td>{{ gender.plateau.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">33</th>
+                                                <td>{% get_verbose_field_name gender "rivers" %}</td>
+                                                <td>{{ gender.rivers.male }}</td>
+                                                <td>{{ gender.rivers.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">34</th>
+                                                <td>{% get_verbose_field_name gender "sokoto" %}</td>
+                                                <td>{{ gender.sokoto.male }}</td>
+                                                <td>{{ gender.sokoto.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">35</th>
+                                                <td>{% get_verbose_field_name gender "taraba" %}</td>
+                                                <td>{{ gender.taraba.male }}</td>
+                                                <td>{{ gender.taraba.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">36</th>
+                                                <td>{% get_verbose_field_name gender "yobe" %}</td>
+                                                <td>{{ gender.yobe.male }}</td>
+                                                <td>{{ gender.yobe.female }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">37</th>
+                                                <td>{% get_verbose_field_name gender "zamfara" %}</td>
+                                                <td>{{ gender.zamfara.male }}</td>
+                                                <td>{{ gender.zamfara.female }}</td>
+                                            </tr>
+                                        {% endfor %}
+									</tbody>
+								</table>
+                                {% else %}
+                                        <p style="text-align: center">No Information</p>
+                                {% endif %}
+							</div>
+						</div>
+					</div>
+            <!--end row-->
+        </div>
+    </div>
+    <!--end page-content-wrapper-->
+  </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            // chart 2
+            var ctx = document.getElementById("chart2").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+                    datasets: [{
+                        label: 'Google',
+                        data: [13, 20, 4, 18, 29, 25, 8],
+                        barPercentage: .5,
+                        backgroundColor: "#673ab7"
+                    }, {
+                        label: 'Facebook',
+                        data: [31, 30, 6, 6, 21, 4, 11],
+                        barPercentage: .5,
+                        backgroundColor: "#bf9bff"
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: true,
+                        labels: {
+                            fontColor: '#585757',
+                            boxWidth: 40
+                        }
+                    },
+                    tooltips: {
+                        enabled: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                fontColor: '#585757'
+                            },
+                            gridLines: {
+                                display: true,
+                                color: "rgba(0, 0, 0, 0.07)"
+                            },
+                        }]
+                    }
+                }
+            });
+            // chart 3
+            new Chart(document.getElementById("chart3"), {
+                type: 'pie',
+                data: {
+                    labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+                    datasets: [{
+                        label: "Population (millions)",
+                        backgroundColor: ["#673ab7", "#32ab13", "#f02769", "#ffc107", "#198fed"],
+                        data: [2478, 5267, 734, 784, 433]
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    title: {
+                        display: true,
+                        text: 'Predicted world population (millions) in 2050'
+                    }
+                }
+            });
+            // chart 4
+        });
+      </script>
+{% endblock %}
